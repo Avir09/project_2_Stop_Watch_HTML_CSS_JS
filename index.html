@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="stopWatch.css">
+</head>
+
+<body>
+    <div class="heading">
+        <h1>STOP WATCH</h1>
+    </div>
+    <div class="parent_1">
+        <div class="parent">
+            <div class="hours"></div>
+            <div class="colon_1">
+                <strong>:</strong>
+            </div>
+            <div class="minutes"></div>
+            <div class="colon_2">
+                <strong>:</strong>
+            </div>
+            <div class="seconds"></div>
+            <br>
+        </div>
+    </div>
+    <div class="parent_2">
+        <button onclick="calculateTime1()">START</button>
+        <button onclick="stopCalculate()">STOP</button>
+        <div class="restart">
+            <button onclick="reCalculate()">RESTART</button>
+        </div>
+    </div>
+    <script>
+        var sec = 0;
+        var minu = 0;
+        var hou = 0;
+        var ii;
+        document.getElementsByClassName("hours")[0].innerHTML = "00";
+        document.getElementsByClassName("minutes")[0].innerHTML = "00";
+        document.getElementsByClassName("seconds")[0].innerHTML = "00";
+
+        function calculateTime1() {
+            ii = setInterval(calculateTime, 1000);
+        }
+
+        function stopCalculate() {
+            clearInterval(ii);
+        }
+
+        function reCalculate() {
+            clearInterval(ii);
+            hou = 0;
+            minu = 0;
+            sec = 0;
+            document.getElementsByClassName("hours")[0].innerHTML = "00";
+            document.getElementsByClassName("minutes")[0].innerHTML = "00";
+            document.getElementsByClassName("seconds")[0].innerHTML = "00";
+        }
+
+        function calculateTime() {
+            sec++;
+            if (sec == 60) {
+                minu++;
+                sec = sec - 60;
+                minu = minu < 10 ? "0" + minu : minu;
+                document.getElementsByClassName("minutes")[0].innerHTML = minu;
+            }
+            if (minu == 60) {
+                hou++;
+                minu = minu - 60;
+                hou = hou < 10 ? "0" + hou : hou;
+                document.getElementsByClassName("hours")[0].innerHTML = hou;
+            }
+            sec = sec < 10 ? "0" + sec : sec;
+            document.getElementsByClassName("seconds")[0].innerHTML = sec;
+        }
+    </script>
+</body>
+
+</html>
